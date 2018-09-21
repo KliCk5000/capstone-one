@@ -1,0 +1,39 @@
+-- Project Requirements:
+
+- User experience requirements:
+[ ] The starting screen should have a button that users can click to start the quiz.
+[ ] Users should be prompted through a series of at least 5 multiple choice questions that they can answer.
+[ ] Users should be asked questions 1 after the other.
+[ ] Users should only be prompted with 1 question at a time.
+[ ] Users should not be able to skip questions.
+[ ] Users should also be able to see which question they're on (for instance, "7 out of 10") and their current score ("5 correct, 2 incorrect").
+
+- Upon submitting an answer, users should:
+[ ] receive textual feedback about their answer. If they were incorrect, they should be told the correct answer.
+[ ] be moved onto the next question (or interact with an element to move on).
+[ ] Users should be shown their overall score at the end of the quiz. In other words, how many questions they got right out of the total questions asked.
+[ ] Users should be able to start a new quiz.
+
+
+-Technical requirements:
+[ ] Render answer choices in a <form>.
+[ ] Use semantic HTML, along with CSS and jQuery.
+[ ] Follow a11y best practices. -Refer back to the lessons on accessibility and forms for help.
+[ ] Use responsive design and be usable in 320px-wide viewports.
+[ ] Be fully usable by keyboard (which will be easy enough if you start with a form).
+
+-Process requirements:
+[ ] gather content for your app. That means typing up the questions you'll ask and gathering any images or icons you'll need.
+[ ] think about the user experiences outlined above and how your design must make them possible.
+[ ] design your app using HTML wireframes, which are HTML- (and minimal CSS-) only versions of the different screens in your app. We'll discuss HTML wireframes soon.
+
+
+
+Code review
+Once you complete your quiz app, you'll submit it for review through your dashboard. Your project will be assigned to a member of our code review team. The reviewer will score your project based on this rubric. In order to pass, you must score and average of 3.5 points on each objective (21 total points) and cannot receive a 1 score for any objective.
+
+Within 3 days, you'll receive an email with your score and written feedback. If 3 days have passed since submitting the project and you haven't gotten your results, let your program manager know.
+
+If you don't earn enough points on your quiz app to pass, you'll have the opportunity to revise and resubmit your work. Use the feedback provided by the reviewer to improve your quiz app. You must resubmit your project through your dashboard within 5 days of receiving the initial feedback. Students who do not earn a passing score on their second attempt will schedule a call with their program manager to discuss next steps.
+
+Now for the fun part, let's start working on your quiz app!
