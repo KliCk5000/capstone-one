@@ -11,8 +11,6 @@ function setupQuiz() {
   renderStartupPage();
 }
 
-// Render start-page
-// -might need to reset 'score' if the user is restarting the quiz
 function renderStartupPage() {
   $('.quiz-container').append(`
   <div class="start-page">
@@ -22,18 +20,6 @@ function renderStartupPage() {
     <h2>In mexico, there are a lot of interesting phrases you'll come across. How many can you get right?</h2>
     <button type="button" class="startButton">Start Quiz</button>
   </div>`);
-}
-
-// Handle start-button
-function handleStartButton() {
-  $('.quiz-container').on('click', '.startButton', function (e) {
-    //e.preventDefault();
-    $('.start-page').remove();
-    USERDATA.currentQuestion = 1;
-    USERDATA.answersCorrect = 0;
-    USERDATA.answersIncorrect = 0;
-    renderQuestionPage();
-  });
 }
 
 // Render question-page
@@ -74,64 +60,37 @@ function generateQuestion() {
   `);
 }
 
-// Handle question-form-radio-choices
-// -allows user to click on the questions
-// Handle question-submit-button
-// -check if the user picked the correct answer or not
-function handleQuestionSubmitButton() {
-  $('.quiz-container').on('click', '.submitButton', e => {
-    if ($('input:radio[name=answer]').is(':checked')) {
-      renderFeedbackPage( isUserCorrect() );
-      $('.question-page').remove();
-    }
-  });
-
-}
-
 function isUserCorrect() {
   let checkedAnswer = $('input[name=answer]:checked').val();
-  let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion-1].answer;
-  if (checkedAnswer === correctAnswer) { return true } else { return false }
+  let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
+  if (checkedAnswer === correctAnswer) {
+    return true
+  } else {
+    return false
+  }
 }
 
 // Render feedback-page
 function renderFeedbackPage(isCorrect) {
-
+  // -if above question was right, congratulate
+  // -otherwise they were wrong and you need to display the correct answer 
   if (isCorrect === true) {
-  $('.quiz-container').append(
-    `<div class="feedback-correct">
+    $('.quiz-container').append(
+      `<div class="feedback-correct">
       <h2>You were right!</h2>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
     USERDATA.answersCorrect += 1;
   } else {
     $('.quiz-container').append(
-    `<div class="feedback-wrong">
+      `<div class="feedback-wrong">
       <h2>Oh no!</h2>
       <p>The correct answer was "${QUESTIONDATA[USERDATA.currentQuestion-1].answer}"</p>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
-  USERDATA.answersIncorrect += 1;
+    USERDATA.answersIncorrect += 1;
+  }
 }
-}
-// -if above question was right, congratulate
-// -otherwise they were wrong and you need to display the correct answer
-// Handle next-question-button
-function handleNextQuestionButton() {
-  $('.quiz-container').on('click', '.nextQuestionButton', e => {
-    //e.preventDefault();
-    $('.feedback-correct').remove();
-    $('.feedback-wrong').remove();
-    if (USERDATA.currentQuestion < 10) {
-      USERDATA.currentQuestion += 1;
-      renderQuestionPage()
-    } else {
-      renderFinalPage();
-    }
-  });
-
-}
-
 
 // Render final-page
 function renderFinalPage() {
@@ -143,23 +102,60 @@ function renderFinalPage() {
     </div>`
   );
 }
-// -check how many questions were answered correctly and display accordingly
-// -Maybe have some logic on if they did an okay job, bad job, or great job
-// Handle restart-quiz-button
-function handleRestartQuizButton() {
-  $('.quiz-container').on('click', '.restartQuizButton', e => {
-    //e.preventDefault();
-    $('.final-page').remove();
-    renderStartupPage();
-  });
-
-}
 
 function handleAllButtons() {
   handleStartButton();
   handleQuestionSubmitButton();
   handleNextQuestionButton();
   handleRestartQuizButton();
+}
+
+function handleStartButton() {
+  $('.quiz-container').on('click', '.startButton', function (e) {
+    //e.preventDefault();
+    $('.start-page').remove();
+    resetUserScore();
+    renderQuestionPage();
+  });
+}
+
+function handleQuestionSubmitButton() {
+  $('.quiz-container').on('click', '.submitButton', e => {
+    // Make sure that the user actually clicked on a choice first
+    if ($('input:radio[name=answer]').is(':checked')) {
+      renderFeedbackPage(isUserCorrect());
+    }
+  });
+}
+
+function handleNextQuestionButton() {
+  $('.quiz-container').on('click', '.nextQuestionButton', e => {
+    //e.preventDefault();
+    $('.question-page').remove();
+    $('.feedback-correct').remove();
+    $('.feedback-wrong').remove();
+
+    if (USERDATA.currentQuestion < 10) {
+      USERDATA.currentQuestion += 1;
+      renderQuestionPage()
+    } else {
+      renderFinalPage();
+    }
+  });
+}
+
+function handleRestartQuizButton() {
+  $('.quiz-container').on('click', '.restartQuizButton', e => {
+    //e.preventDefault();
+    $('.final-page').remove();
+    renderStartupPage();
+  });
+}
+
+function resetUserScore() {
+  USERDATA.currentQuestion = 1;
+  USERDATA.answersCorrect = 0;
+  USERDATA.answersIncorrect = 0;
 }
 
 $(setupQuiz);

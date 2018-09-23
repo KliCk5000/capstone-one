@@ -10,12 +10,17 @@ body {
   background-color: lightblue;
 }
 
+fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
 .quiz-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 800px;
-  height: 100%;
   padding: 20px;
   min-height: 600px;
   border: 1px solid black;
@@ -30,7 +35,7 @@ body {
 .start-page, .question-page, .feedback-correct, .feedback-wrong, .final-page {
   /* border: 2px dotted green; */
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-bottom: 10px;
   padding: 5px;
   background-color: lightgrey;
