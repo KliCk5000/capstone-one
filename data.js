@@ -1,13 +1,9 @@
 'use strict';
-// Need const to store all the quiz questions.
-// const QUIZDATA
-// -question/phrase
-// -answer choices
-// -correct answer
+
 const QUESTIONDATA = [{
     questionID: 1,
     question: '¿Qué onda?',
-    choices: ['What\'s your name?', 'What\'s up?', 'Really?/For Real?', 'Do you know?'],
+    choices: ['What\'s your name?', 'Where is the bathroom?', 'Really?/For Real?', 'What\'s up?'],
     answer: 'What\'s up?'
   },
   {
@@ -25,19 +21,19 @@ const QUESTIONDATA = [{
   {
     questionID: 4,
     question: '¿Neta?',
-    choices: ['Banana?', 'Really?/For Real?', '', ''],
+    choices: ['Banana?', 'Really?/For Real?', 'Do you know?', 'Where is it?'],
     answer: 'Really?/For Real?'
   },
   {
     questionID: 5,
     question: 'Ni modo',
-    choices: ['slang for Banana', '', '', 'it doesn’t matter/it can’t be helped'],
-    answer: 'it doesn’t matter/it can’t be helped'
+    choices: ['Slang for Banana', 'That\'s neat', 'Me too', 'It doesn’t matter/it can’t be helped'],
+    answer: 'It doesn’t matter/it can’t be helped'
   },
   {
     questionID: 6,
     question: 'Chido',
-    choices: ['Cool, when refering to objects or situations', 'A short Child', '', ''],
+    choices: ['Cool, when refering to objects or situations', 'A short Child', 'Tortilla Chips', 'Dinner'],
     answer: 'Cool, when refering to objects or situations'
   },
   {
@@ -49,26 +45,19 @@ const QUESTIONDATA = [{
   {
     questionID: 8,
     question: 'Cochino',
-    choices: ['', 'dirty/discusting/rude', '', ''],
-    answer: 'dirty/discusting/rude'
+    choices: ['Truck/car', 'Dirty/Discusting/Rude', 'Train', 'Person who is cool'],
+    answer: 'Dirty/Discusting/Rude'
   },
   {
     questionID: 9,
     question: 'Chela',
-    choices: ['', '', 'Beer', ''],
+    choices: ['Cheese', 'Dress', 'Beer', 'Banana'],
     answer: 'Beer'
   },
   {
     questionID: 10,
     question: 'Chiste',
-    choices: ['Joke/trick', 'Spill', '', ''],
+    choices: ['Joke/Trick', 'Spill', 'Drunk', 'Lost'],
     answer: 'Joke/trick'
   }
 ];
-
-const STARTPAGEDATA =
-  ` <div class="start-page">
-      <h2>In mexico, there are a lot of interesting phrases you'll come across. How many can you get right?</h2>
-      <button type="button" class="start-button">Start Quiz</button>
-    </div>
-`;

@@ -16,6 +16,9 @@ function setupQuiz() {
 function renderStartupPage() {
   $('.quiz-container').append(`
   <div class="start-page">
+    <header role="header">
+        <h1>Spanish Quiz</h1>
+    </header>
     <h2>In mexico, there are a lot of interesting phrases you'll come across. How many can you get right?</h2>
     <button type="button" class="startButton">Start Quiz</button>
   </div>`);
