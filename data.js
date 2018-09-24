@@ -58,6 +58,6 @@ const QUESTIONDATA = [{
     questionID: 10,
     question: 'Chiste',
     choices: ['Joke/Trick', 'Spill', 'Drunk', 'Lost'],
-    answer: 'Joke/trick'
+    answer: 'Joke/Trick'
   }
 ];

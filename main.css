@@ -4,10 +4,8 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: lightblue;
+  padding: 40px;
 }
 
 fieldset {
@@ -20,11 +18,14 @@ fieldset {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 800px;
+  max-width: 800px;
+  min-width: 300px;
+  margin: auto;
   padding: 20px;
   min-height: 600px;
   border: 1px solid black;
   background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .question-choices {
@@ -35,13 +36,17 @@ fieldset {
   margin-right: auto;
 }
 
+progress {
+  display: block;
+  margin: auto;
+}
+
 .start-page, .question-page, .feedback-correct, .feedback-wrong, .final-page {
-  /* border: 2px dotted green; */
   width: 100%;
   height: auto;
   margin-bottom: 10px;
   padding: 5px;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
 }
 
 .flex-center {
@@ -52,7 +57,8 @@ fieldset {
 button {
   display: block;
   width: 200px;
-  margin: 0 auto;
+  margin: 20px auto;
+
 }
 
 .center {
@@ -61,17 +67,44 @@ button {
   text-align: center;
 }
 
+h1 {
+  text-align: center;
+  font-size: 4em;
+  margin: 20px auto;
+}
+
 h2, p {
   display: block;
-  margin: 0 auto;
+  font-size: 2em;
+  margin: 40px auto;
   text-align: center;
 }
 
+.feedback-correct h1, .feedback-wrong h1, .feedback-correct h2, .feedback-wrong h2, .feedback-correct p, .feedback-wrong p{
+  margin: 5px auto;
+}
+
 input[type="radio"] {
-  display: none;
+  /* display: none; */
 }
 
 .answerOption input:checked + span {
   background-color:#404040;
   color:#F7F7F7;
+}
+
+.answerOption:hover {
+  background-color: lightgray;
+}
+
+.answerRadio:checked {
+  background-color: red;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.incorrect {
+  background-color: lightcoral;
 }

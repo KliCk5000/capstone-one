@@ -15,9 +15,9 @@ function renderStartupPage() {
   $('.quiz-container').append(`
   <div class="start-page">
     <header role="header">
-        <h1>Spanish Quiz</h1>
+        <h1>Mexican Spanish Quiz</h1>
     </header>
-    <h2>In mexico, there are a lot of interesting phrases you'll come across. How many can you get right?</h2>
+    <h2>How many can you get right?</h2>
     <button type="button" class="startButton">Start Quiz</button>
   </div>`);
 }
@@ -32,57 +32,53 @@ function renderQuestionPage() {
 function generateQuestion() {
   let currentQuestionObj = QUESTIONDATA[USERDATA.currentQuestion - 1];
 
-  $('.quiz-container').append(
-    `<div class="question-page">
-  <h2>Question ${USERDATA.currentQuestion}:</h2>
-  <p>${currentQuestionObj.question}</p>
+  $('.quiz-container').append(`
+  <div class="question-page">
+    <h2>Question ${USERDATA.currentQuestion}:</h2>
+    <p>Which is the correct translation?</p>
+    <p>${currentQuestionObj.question}</p>
 
-  <form class="question-form">
-    <fieldset class="question-choices">`);
+    <form class="question-form">
+      <fieldset class="question-choices">
+  `);
 
   for (let i = 0; i < currentQuestionObj.choices.length; i++) {
-    $('.question-choices').append(
-      `<label class="answerOption">
-          <input class="answerRadio" type="radio" name="answer" value="${currentQuestionObj.choices[i]}" required>
-          <span>${currentQuestionObj.choices[i]}</span>
-      </label>`
-    );
-  }
-
-  $('.question-page').append(
-    `
-      <button type="button" class="submitButton">Submit</button>
-    </fieldset>
-  </form>
-
-  <p>Current Question: ${USERDATA.currentQuestion} of 10 ~ ${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>
-</div>
+    $('.question-choices').append(`
+      <label class="answerOption">
+        <input class="answerRadio" type="radio" name="answer" value="${currentQuestionObj.choices[i]}" required>
+        <span>${currentQuestionObj.choices[i]}</span>
+      </label>
   `);
-}
-
-function isUserCorrect() {
-  let checkedAnswer = $('input[name=answer]:checked').val();
-  let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
-  if (checkedAnswer === correctAnswer) {
-    return true
-  } else {
-    return false
   }
+
+  $('.question-page').append(`
+      <div class="feedback-section">
+      </div>
+      <button type="button" class="submitButton">Submit</button>
+      </fieldset>
+    </form>
+    <progress value="${USERDATA.currentQuestion-1}" max="10"></progress>
+    <p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>
+  </div>
+  `);
 }
 
 // Render feedback-page
 function renderFeedbackPage(isCorrect) {
+  let checkedAnswer = $('input[name=answer]:checked').val();
+  let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
+
   // -if above question was right, congratulate
   // -otherwise they were wrong and you need to display the correct answer 
-  if (isCorrect === true) {
-    $('.quiz-container').append(
+  if (checkedAnswer === correctAnswer) {
+    $('.feedback-section').append(
       `<div class="feedback-correct">
       <h2>You were right!</h2>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
     USERDATA.answersCorrect += 1;
   } else {
-    $('.quiz-container').append(
+    $('.feedback-section').append(
       `<div class="feedback-wrong">
       <h2>Oh no!</h2>
       <p>The correct answer was "${QUESTIONDATA[USERDATA.currentQuestion-1].answer}"</p>
@@ -90,6 +86,9 @@ function renderFeedbackPage(isCorrect) {
     </div>`);
     USERDATA.answersIncorrect += 1;
   }
+  // Set correct and incorrect backgrounds
+  $("span:contains("+QUESTIONDATA[USERDATA.currentQuestion-1].answer+")").addClass("correct");
+  $('input[type="radio"').attr('disabled', true);
 }
 
 // Render final-page
@@ -104,6 +103,7 @@ function renderFinalPage() {
 }
 
 function handleAllButtons() {
+  // 
   handleStartButton();
   handleQuestionSubmitButton();
   handleNextQuestionButton();
@@ -123,7 +123,8 @@ function handleQuestionSubmitButton() {
   $('.quiz-container').on('click', '.submitButton', e => {
     // Make sure that the user actually clicked on a choice first
     if ($('input:radio[name=answer]').is(':checked')) {
-      renderFeedbackPage(isUserCorrect());
+      renderFeedbackPage();
+      $('.submitButton').remove();
     }
   });
 }
