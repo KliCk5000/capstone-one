@@ -36,6 +36,17 @@ fieldset {
   margin-right: auto;
 }
 
+.answerOption {
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 500px;
+  height: 40px;
+  margin: 4px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 progress {
   display: block;
   margin: auto;
@@ -85,7 +96,7 @@ h2, p {
 }
 
 input[type="radio"] {
-  /* display: none; */
+  display: none;
 }
 
 .answerOption input:checked + span {

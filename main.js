@@ -44,10 +44,12 @@ function generateQuestion() {
 
   for (let i = 0; i < currentQuestionObj.choices.length; i++) {
     $('.question-choices').append(`
-      <label class="answerOption">
-        <input class="answerRadio" type="radio" name="answer" value="${currentQuestionObj.choices[i]}" required>
-        <span>${currentQuestionObj.choices[i]}</span>
-      </label>
+      <div class="answerOption">  
+        <label>
+          <input class="answerRadio" type="radio" name="answer" value="${currentQuestionObj.choices[i]}" required>
+          <span>${currentQuestionObj.choices[i]}</span>
+        </label>
+      </div>
   `);
   }
 
