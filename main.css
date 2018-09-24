@@ -36,14 +36,12 @@ fieldset {
   margin-right: auto;
 }
 
-.answerOption {
-  border: 1px solid black;
-  border-radius: 4px;
+.answerButton{
+  /* border-radius: 4px; */
   width: 500px;
   height: 40px;
   margin: 4px auto;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -95,21 +93,13 @@ h2, p {
   margin: 5px auto;
 }
 
-input[type="radio"] {
-  display: none;
-}
-
 .answerOption input:checked + span {
   background-color:#404040;
   color:#F7F7F7;
 }
 
-.answerOption:hover {
+.answerButton:hover {
   background-color: lightgray;
-}
-
-.answerRadio:checked {
-  background-color: red;
 }
 
 .correct {
@@ -118,4 +108,8 @@ input[type="radio"] {
 
 .incorrect {
   background-color: lightcoral;
+}
+
+.active {
+  background-color: blue;
 }

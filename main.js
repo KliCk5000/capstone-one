@@ -44,11 +44,8 @@ function generateQuestion() {
 
   for (let i = 0; i < currentQuestionObj.choices.length; i++) {
     $('.question-choices').append(`
-      <div class="answerOption">  
-        <label>
-          <input class="answerRadio" type="radio" name="answer" value="${currentQuestionObj.choices[i]}" required>
-          <span>${currentQuestionObj.choices[i]}</span>
-        </label>
+      <div class="answerOption">
+          <input class="answerButton" type="button" name="answer" value="${currentQuestionObj.choices[i]}" required>
       </div>
   `);
   }
@@ -67,7 +64,7 @@ function generateQuestion() {
 
 // Render feedback-page
 function renderFeedbackPage(isCorrect) {
-  let checkedAnswer = $('input[name=answer]:checked').val();
+  let checkedAnswer = $('input[name=answer]:active').val();
   let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
 
   // -if above question was right, congratulate
@@ -90,7 +87,7 @@ function renderFeedbackPage(isCorrect) {
   }
   // Set correct and incorrect backgrounds
   $("span:contains("+QUESTIONDATA[USERDATA.currentQuestion-1].answer+")").addClass("correct");
-  $('input[type="radio"').attr('disabled', true);
+  $('input[type="button"').attr('disabled', true);
 }
 
 // Render final-page
@@ -107,6 +104,7 @@ function renderFinalPage() {
 function handleAllButtons() {
   // 
   handleStartButton();
+  handleOptionButtons();
   handleQuestionSubmitButton();
   handleNextQuestionButton();
   handleRestartQuizButton();
@@ -121,10 +119,18 @@ function handleStartButton() {
   });
 }
 
+function handleOptionButtons() {
+  $('.quiz-container').on('click', '.answerButton', function (e) {
+    $('.answerButton').removeClass('active');
+    $(this).addClass('active');
+  }
+  );
+}
+
 function handleQuestionSubmitButton() {
   $('.quiz-container').on('click', '.submitButton', e => {
     // Make sure that the user actually clicked on a choice first
-    if ($('input:radio[name=answer]').is(':checked')) {
+    if ($('input:button[name=answer]').hasClass('active')) {
       renderFeedbackPage();
       $('.submitButton').remove();
     }
