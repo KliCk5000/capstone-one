@@ -35,8 +35,7 @@ function generateQuestion() {
   $('.quiz-container').append(`
   <div class="question-page">
     <h2>Question ${USERDATA.currentQuestion}:</h2>
-    <p>Which is the correct translation?</p>
-    <p>${currentQuestionObj.question}</p>
+    <p>Which is the correct translation for: ${currentQuestionObj.question}</p>
 
     <form class="question-form">
       <fieldset class="question-choices">
@@ -64,7 +63,7 @@ function generateQuestion() {
 
 // Render feedback-page
 function renderFeedbackPage(isCorrect) {
-  let checkedAnswer = $('input[name=answer]:active').val();
+  let checkedAnswer = $('input[name=answer].active').val();
   let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
 
   // -if above question was right, congratulate
@@ -112,7 +111,6 @@ function handleAllButtons() {
 
 function handleStartButton() {
   $('.quiz-container').on('click', '.startButton', function (e) {
-    //e.preventDefault();
     $('.start-page').remove();
     resetUserScore();
     renderQuestionPage();
@@ -139,7 +137,6 @@ function handleQuestionSubmitButton() {
 
 function handleNextQuestionButton() {
   $('.quiz-container').on('click', '.nextQuestionButton', e => {
-    //e.preventDefault();
     $('.question-page').remove();
     $('.feedback-correct').remove();
     $('.feedback-wrong').remove();
@@ -155,7 +152,6 @@ function handleNextQuestionButton() {
 
 function handleRestartQuizButton() {
   $('.quiz-container').on('click', '.restartQuizButton', e => {
-    //e.preventDefault();
     $('.final-page').remove();
     renderStartupPage();
   });
