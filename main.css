@@ -5,7 +5,7 @@
 
 body {
   background-color: lightblue;
-  padding: 40px;
+  padding: 20px;
 }
 
 fieldset {
@@ -31,18 +31,9 @@ fieldset {
 .question-choices {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-
-.answerButton{
-  /* border-radius: 4px; */
-  width: 500px;
-  height: 40px;
-  margin: 4px auto;
-  display: flex;
-  justify-content: center;
 }
 
 progress {
@@ -98,10 +89,6 @@ h2, p {
   color:#F7F7F7;
 }
 
-.answerButton:hover {
-  background-color: lightgray;
-}
-
 .correct {
   background-color: lightgreen;
 }
@@ -111,5 +98,28 @@ h2, p {
 }
 
 .active {
-  background-color: blue;
+  background-color: lightblue;
+}
+
+.answerButton {
+  border: 1px solid lightblue;
+  border-radius: 6px;
+  width: 100%;
+  height: 40px;
+  margin: 4px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.answerButton:hover {
+  border-color: lightskyblue;
+  background-color: lightskyblue;
+}
+
+.answerButton:active {
+  background-color: lightblue;
+}
+
+.answerButton:focus {
+  border-radius: 6px;
 }
