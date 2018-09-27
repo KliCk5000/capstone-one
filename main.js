@@ -94,10 +94,11 @@ function renderFeedbackPage() {
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
     USERDATA.answersIncorrect += 1;
+
+    $('input[name=answer].active').addClass("incorrect");
   }
   // Set correct and incorrect backgrounds
   $('input[type="button"][value="' + correctAnswer + '"]').addClass("correct");
-  $('input[name=answer].active').addClass("incorrect");
   $('input[type="button"]').attr('disabled', true);
 }
 
