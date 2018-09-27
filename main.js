@@ -6,11 +6,19 @@ const USERDATA = {
   answersIncorrect: 0
 };
 
+/**
+ * At the start, add all event listeners to the buttons,
+ * and render the first screen: start-page
+ */
 function setupQuiz() {
   handleAllButtons();
   renderStartupPage();
 }
 
+/**
+ * start-page will be the title screen that displays
+ * the name of the Quiz and includes a start button
+ */
 function renderStartupPage() {
   $('.quiz-container').append(`
   <div class="start-page">
@@ -22,14 +30,14 @@ function renderStartupPage() {
   </div>`);
 }
 
-// Render question-page
-// -grab the current question from QUIZDATA
-// -render out all the choices
+/**
+ * question-page is the main content of the QuizApp, It renders out
+ * on the fly, each question, including choices as you go through the quiz.
+ * Each time a question needs to be generated, it grabs the current question
+ * from QUIZDATA, and then grabs each 'choice/answerOption' and displays it.
+ */
 function renderQuestionPage() {
-  generateQuestion();
-}
-
-function generateQuestion() {
+  // Grab just the current question object to make things easier
   let currentQuestionObj = QUESTIONDATA[USERDATA.currentQuestion - 1];
 
   $('.quiz-container').append(`
@@ -44,7 +52,7 @@ function generateQuestion() {
   for (let i = 0; i < currentQuestionObj.choices.length; i++) {
     $('.question-choices').append(`
       <div class="answerOption">
-          <input class="answerButton" type="button" name="answer" value="${currentQuestionObj.choices[i]}" required>
+          <input class="answerButton" type="button" name="answer" value="${currentQuestionObj.choices[i]}">
       </div>
   `);
   }
@@ -55,19 +63,22 @@ function generateQuestion() {
       <button type="button" class="submitButton">Submit</button>
       </fieldset>
     </form>
-    <progress value="${USERDATA.currentQuestion-1}" max="10"></progress>
-    <p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>
+    <progress value="${USERDATA.currentQuestion-1}" max="10">1/10</progress>
+    <!--<p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>-->
   </div>
   `);
 }
 
-// Render feedback-page
-function renderFeedbackPage(isCorrect) {
+/**
+ * Render feedback-page
+ * This is called once a questionSubmitButton is pressed
+ * It gets the value of the checkedAnswer, and matches it with the
+ * correct answer, and displays feedback accordingly.
+ */
+function renderFeedbackPage() {
   let checkedAnswer = $('input[name=answer].active').val();
   let correctAnswer = QUESTIONDATA[USERDATA.currentQuestion - 1].answer;
 
-  // -if above question was right, congratulate
-  // -otherwise they were wrong and you need to display the correct answer 
   if (checkedAnswer === correctAnswer) {
     $('.feedback-section').append(
       `<div class="feedback-correct">
@@ -85,23 +96,51 @@ function renderFeedbackPage(isCorrect) {
     USERDATA.answersIncorrect += 1;
   }
   // Set correct and incorrect backgrounds
-  $("span:contains("+QUESTIONDATA[USERDATA.currentQuestion-1].answer+")").addClass("correct");
+  $("span:contains(" + QUESTIONDATA[USERDATA.currentQuestion - 1].answer + ")").addClass("correct");
   $('input[type="button"').attr('disabled', true);
 }
 
-// Render final-page
+/**
+ * Render final-page
+ * Once the user is done with all questions,
+ * take their score and set an appropriate greeting
+ * then offer if they would like to take the quiz again
+ */
 function renderFinalPage() {
+  let finalScore = (USERDATA.answersCorrect / 10) * 100;
+  let greeting = ``;
+
+
+  if (finalScore == 100) {
+    //Perfect score
+    greeting = `Congratulations, PERFECT!`;
+  } else if (finalScore >= 80) {
+    //Normal Score
+    greeting = `Congrats!`;
+  } else if (finalScore >= 30) {
+    //Need more practice Score
+    greeting = `May need more practice`;
+  } else if (finalScore < 30) {
+    //Bad Score
+    greeting = `Oh no! Please try again!`;
+  }
+
+
   $('.quiz-container').append(
     `<div class="final-page">
-      <h2>Congratulations!</h2>
+      <h2>${greeting}</h2>
       <p>You got ${USERDATA.answersCorrect} out of 10 questions right for a score of ${(USERDATA.answersCorrect / 10) * 100}%</p>
-      <button type="button" class="restartQuizButton">Click here to try to get a better score.</button>
+      <button type="button" class="restartQuizButton">Click here to try the quiz again!</button>
     </div>`
   );
 }
 
+/**
+ * Adding all event listeners to each button
+ * Each button is handled in a seperate function just for
+ * orginizational purposes
+ */
 function handleAllButtons() {
-  // 
   handleStartButton();
   handleOptionButtons();
   handleQuestionSubmitButton();
@@ -109,6 +148,12 @@ function handleAllButtons() {
   handleRestartQuizButton();
 }
 
+/**
+ * When startButton is clicked
+ * remove the start-page,
+ * reset the users Score in case this isn't the first time
+ * render out the questions Page
+ */
 function handleStartButton() {
   $('.quiz-container').on('click', '.startButton', function (e) {
     $('.start-page').remove();
@@ -117,14 +162,22 @@ function handleStartButton() {
   });
 }
 
+/**
+ * When a question choice is clicked on,
+ * remove any 'active' buttons and make this button active
+ */
 function handleOptionButtons() {
   $('.quiz-container').on('click', '.answerButton', function (e) {
     $('.answerButton').removeClass('active');
     $(this).addClass('active');
-  }
-  );
+  });
 }
 
+/**
+ * When the user is ready to submit their answer
+ * Check to make sure they DID choose an answer, then
+ * remove the button and show the feedback text
+ */
 function handleQuestionSubmitButton() {
   $('.quiz-container').on('click', '.submitButton', e => {
     // Make sure that the user actually clicked on a choice first
@@ -135,6 +188,12 @@ function handleQuestionSubmitButton() {
   });
 }
 
+/**
+ * After the user submits their question and feedback
+ * is given, they will click on the next question button
+ * which will remove any feedback, and the previous question
+ * and will show the next question
+ */
 function handleNextQuestionButton() {
   $('.quiz-container').on('click', '.nextQuestionButton', e => {
     $('.question-page').remove();
@@ -150,6 +209,10 @@ function handleNextQuestionButton() {
   });
 }
 
+/**
+ * After the user clicks on the restart quiz button
+ * remove the final page and show the start page again
+ */
 function handleRestartQuizButton() {
   $('.quiz-container').on('click', '.restartQuizButton', e => {
     $('.final-page').remove();
@@ -157,6 +220,10 @@ function handleRestartQuizButton() {
   });
 }
 
+/**
+ * Reset the scores for the user to retake the quiz
+ *
+ */
 function resetUserScore() {
   USERDATA.currentQuestion = 1;
   USERDATA.answersCorrect = 0;

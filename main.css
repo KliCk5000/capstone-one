@@ -14,6 +14,13 @@ fieldset {
   margin: 0;
 }
 
+button {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+}
+
+/* the .quiz-container class is the whole "box" that renders each screen in the app. */
 .quiz-container {
   display: flex;
   flex-direction: column;
@@ -28,6 +35,43 @@ fieldset {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.start-page,
+.question-page,
+.feedback-correct,
+.feedback-wrong,
+.final-page {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+/* 
+* These affect mostly the start-page screen
+*/
+.start-page h1 {
+  text-align: center;
+  font-size: 60px;
+  margin: 100px auto;
+}
+
+.start-page h2 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 auto 20px auto;
+}
+
+/* 
+* These affect mostly the question-page screen
+*/
+.question-page h2,
+p {
+  display: block;
+  font-size: 30px;
+  margin: 40px auto;
+  text-align: center;
+}
+
 .question-choices {
   display: flex;
   flex-direction: column;
@@ -36,57 +80,9 @@ fieldset {
   margin-right: auto;
 }
 
-progress {
-  display: block;
-  margin: auto;
-}
-
-.start-page, .question-page, .feedback-correct, .feedback-wrong, .final-page {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  padding: 5px;
-  /* background-color: lightgrey; */
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-button {
-  display: block;
-  width: 200px;
-  margin: 20px auto;
-
-}
-
-.center {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  text-align: center;
-  font-size: 4em;
-  margin: 20px auto;
-}
-
-h2, p {
-  display: block;
-  font-size: 2em;
-  margin: 40px auto;
-  text-align: center;
-}
-
-.feedback-correct h1, .feedback-wrong h1, .feedback-correct h2, .feedback-wrong h2, .feedback-correct p, .feedback-wrong p{
-  margin: 5px auto;
-}
-
-.answerOption input:checked + span {
-  background-color:#404040;
-  color:#F7F7F7;
+.answerOption input:checked+span {
+  background-color: #404040;
+  color: #F7F7F7;
 }
 
 .correct {
@@ -122,4 +118,32 @@ h2, p {
 
 .answerButton:focus {
   border-radius: 6px;
+}
+
+.feedback-correct h1,
+.feedback-wrong h1,
+.feedback-correct h2,
+.feedback-wrong h2,
+.feedback-correct p,
+.feedback-wrong p {
+  margin: 5px auto;
+}
+
+/* This will style the progress bar that appears during the quiz */
+progress {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 10px;
+}
+
+/* 
+* These affect mostly the final-page screen
+*/
+.final-page h2,
+p {
+  display: block;
+  font-size: 30px;
+  margin: 40px auto;
+  text-align: center;
 }
