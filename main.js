@@ -58,9 +58,9 @@ function renderQuestionPage() {
   }
 
   $('.question-page').append(`
+      <button type="button" class="submitButton">Submit</button>
       <div class="feedback-section">
       </div>
-      <button type="button" class="submitButton">Submit</button>
       </fieldset>
     </form>
     <progress value="${USERDATA.currentQuestion-1}" max="10">1/10</progress>
