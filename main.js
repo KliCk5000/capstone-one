@@ -23,7 +23,7 @@ function renderStartupPage() {
   $('.quiz-container').append(`
   <div class="start-page">
     <header role="header">
-        <h1>Mexican Spanish Quiz</h1>
+        <h1 class="red-plus-shadow">Mexican Spanish Quiz</h1>
     </header>
     <h2>How many can you get right?</h2>
     <button type="button" class="startButton">Start Quiz</button>
@@ -42,7 +42,7 @@ function renderQuestionPage() {
 
   $('.quiz-container').append(`
   <div class="question-page">
-    <h2>Question ${USERDATA.currentQuestion}:</h2>
+    <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
     <p>Which is the correct translation for: ${currentQuestionObj.question}</p>
 
     <form class="question-form">
@@ -128,7 +128,7 @@ function renderFinalPage() {
 
   $('.quiz-container').append(
     `<div class="final-page">
-      <h2>${greeting}</h2>
+      <h2 class="red-plus-shadow">${greeting}</h2>
       <p>You got ${USERDATA.answersCorrect} out of 10 questions right for a score of ${(USERDATA.answersCorrect / 10) * 100}%</p>
       <button type="button" class="restartQuizButton">Click here to try the quiz again!</button>
     </div>`
