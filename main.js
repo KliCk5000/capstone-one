@@ -90,14 +90,15 @@ function renderFeedbackPage() {
     $('.feedback-section').append(
       `<div class="feedback-wrong">
       <h2>Oh no!</h2>
-      <p>The correct answer was "${QUESTIONDATA[USERDATA.currentQuestion-1].answer}"</p>
+      <p>The correct answer was "${correctAnswer}"</p>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
     USERDATA.answersIncorrect += 1;
   }
   // Set correct and incorrect backgrounds
-  $("span:contains(" + QUESTIONDATA[USERDATA.currentQuestion - 1].answer + ")").addClass("correct");
-  $('input[type="button"').attr('disabled', true);
+  $('input[type="button"][value="' + correctAnswer + '"]').addClass("correct");
+  $('input[name=answer].active').addClass("incorrect");
+  $('input[type="button"]').attr('disabled', true);
 }
 
 /**
