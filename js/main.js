@@ -21,7 +21,7 @@ function setupQuiz() {
  */
 function renderStartupPage() {
   $('.quiz-container').append(`
-  <div class="start-page">
+  <div class="start-page col-12">
     <header role="header">
         <h1 class="red-plus-shadow">Mexican Spanish Quiz</h1>
     </header>
@@ -39,33 +39,52 @@ function renderStartupPage() {
 function renderQuestionPage() {
   // Grab just the current question object to make things easier
   let currentQuestionObj = QUESTIONDATA[USERDATA.currentQuestion - 1];
+  let answerOptionHTML = ``;
 
+  // Setup the areas of the Question Page: TOP - MID - BOTTOM
   $('.quiz-container').append(`
-  <div class="question-page">
-    <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
-    <p>Which is the correct translation for: <span class="no-wrap">${currentQuestionObj.question}</span></p>
+  <div class="question-page col-12">
+    <div class="question-top"></div>
+    <div class="question-mid"></div>
+    <div class="question-bottom"></div>
+  </div>`);
 
-    <form class="question-form">
-      <fieldset class="question-choices">
-  `);
+  // TOP of the Question Page which includes the "Question 1: This is the first question"
+  $('.question-top').append(`
+      <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
+      <h3>Which is the correct translation for: <span class="no-wrap">${currentQuestionObj.question}</span></h3>
+    `);
 
+  // Create the HTML for the Question options that the user can choose from.
   for (let i = 0; i < currentQuestionObj.choices.length; i++) {
-    $('.question-choices').append(`
-      <div class="answerOption">
-          <input class="answerButton" type="button" name="answer" value="${currentQuestionObj.choices[i]}">
-      </div>
-  `);
+    answerOptionHTML +=
+      `<div class="answerOption col-6">
+        <input class="answerButton" type="button" name="answer" value="${currentQuestionObj.choices[i]}">
+      </div>`;
   }
 
-  $('.question-page').append(`
-      <button type="button" class="submitButton">Submit</button>
-      <div class="feedback-section">
+  // MID of the Question Page which includes all options, and the submit/feedback area.
+  $('.question-mid').append(`
+    <form class="question-form">
+      <fieldset class="question-choices">
+      <div class="row">
+          ${answerOptionHTML}
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <button type="button" class="submitButton">Submit</button>
+        <div class="col-2"></div>
+      </div>
+      <div class="row">
+        <div class="feedback-section col-12">
       </div>
       </fieldset>
     </form>
-    <progress value="${USERDATA.currentQuestion-1}" max="10">1/10</progress>
-    <!--<p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>-->
-  </div>
+  `);
+
+  $('.question-bottom').append(`
+      <progress value="${USERDATA.currentQuestion-1}" max="10">1/10</progress>
+      <!--<p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>-->
   `);
 }
 
@@ -82,14 +101,14 @@ function renderFeedbackPage() {
   if (checkedAnswer === correctAnswer) {
     $('.feedback-section').append(
       `<div class="feedback-correct">
-      <h2>You were right!</h2>
+      <h3>You were right!</h3>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
     USERDATA.answersCorrect += 1;
   } else {
     $('.feedback-section').append(
       `<div class="feedback-wrong">
-      <h2>Oh no!</h2>
+      <h3>Oh no!</h3>
       <p>The correct answer was "${correctAnswer}"</p>
       <button type="button" class="nextQuestionButton">Next Question</button>
     </div>`);
@@ -129,7 +148,7 @@ function renderFinalPage() {
 
 
   $('.quiz-container').append(
-    `<div class="final-page">
+    `<div class="final-page col-12">
       <h2 class="red-plus-shadow">${greeting}</h2>
       <p>You got ${USERDATA.answersCorrect} out of 10 questions right for a score of ${(USERDATA.answersCorrect / 10) * 100}%</p>
       <button type="button" class="restartQuizButton">Click here to try the quiz again!</button>
