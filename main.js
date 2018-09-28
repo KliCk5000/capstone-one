@@ -43,7 +43,7 @@ function renderQuestionPage() {
   $('.quiz-container').append(`
   <div class="question-page">
     <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
-    <p>Which is the correct translation for: ${currentQuestionObj.question}</p>
+    <p>Which is the correct translation for: <span class="no-wrap">${currentQuestionObj.question}</span></p>
 
     <form class="question-form">
       <fieldset class="question-choices">

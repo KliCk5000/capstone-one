@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -65,11 +65,19 @@ button {
 /* 
 * These affect mostly the question-page screen
 */
-.question-page h2,
-p {
-  display: block;
+.no-wrap {
+  white-space: nowrap;
+}
+
+.question-page h2 {
+  font-size: 40px;
+  margin: 50px auto 20px auto;
+  text-align: center;
+}
+
+.question-page p {
   font-size: 30px;
-  margin: 40px auto;
+  margin: 20px auto 40px auto;
   text-align: center;
 }
 
