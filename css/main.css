@@ -15,35 +15,25 @@ fieldset {
 
 button {
   display: block;
+  background-color: lightgray;
+  border: 1px solid lightblue;
+  border-radius: 6px;
   width: 50%;
   height: 40px;
-  margin: 20px auto;
+  margin: 4px auto;
+}
+
+button:hover {
+  font-weight: bold;
+  border-color: grey;
 }
 
 /* the .quiz-container class is the whole "box" that renders each screen in the app. */
 .quiz-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 800px;
-  min-width: 300px;
-  margin: auto;
-  padding: 20px;
   min-height: 600px;
   border: 1px solid black;
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.start-page,
-.question-page,
-.feedback-correct,
-.feedback-wrong,
-.final-page {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px;
-  padding: 5px;
 }
 
 /* 
@@ -52,50 +42,53 @@ button {
 .start-page h1 {
   text-align: center;
   font-size: 60px;
-  margin: 100px auto;
 }
 
 .start-page h2 {
   text-align: center;
   font-size: 30px;
-  margin: 0 auto 20px auto;
 }
 
 /* 
 * These affect mostly the question-page screen
+* and are split between TOP - MIDDLE - BOTTOM
 */
+
+/*
+* TOP
+*/
+.question-top {
+  min-height: 150px;
+}
+
 .no-wrap {
   white-space: nowrap;
 }
 
 .question-page h2 {
   font-size: 40px;
-  margin: 50px auto 20px auto;
+  text-align: center;
+}
+
+.question-page h3 {
+  font-size: 30px;
   text-align: center;
 }
 
 .question-page p {
-  font-size: 30px;
-  margin: 20px auto 40px auto;
+  font-size: 20px;
   text-align: center;
 }
 
+/*
+* MID
+*/
+.question-mid {
+  min-height: 300px;
+}
+
 .question-choices {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.answerOption input:checked+span {
-  background-color: #404040;
-  color: #F7F7F7;
-}
-
-.active {
-  color: white;
-  background-color: rgb(36, 147, 111);
 }
 
 .answerButton {
@@ -104,8 +97,16 @@ button {
   width: 100%;
   height: 40px;
   margin: 4px auto;
-  display: flex;
-  justify-content: center;
+}
+
+.active {
+  color: white;
+  background-color: rgb(36, 147, 111);
+}
+
+.answerOption input:checked+span {
+  background-color: #404040;
+  color: #F7F7F7;
 }
 
 .answerButton:hover {
@@ -134,19 +135,19 @@ button {
   background-color: lightcoral;
 }
 
-.feedback-correct h1,
-.feedback-wrong h1,
-.feedback-correct h2,
-.feedback-wrong h2,
-.feedback-correct p,
-.feedback-wrong p {
-  margin: 5px auto;
+.submitButton {
+  margin-top: 30px;
+}
+
+/*
+* BOTTOM
+*/
+.question-bottom {
+  min-height: 50px;
 }
 
 /* This will style the progress bar that appears during the quiz */
 progress {
-  display: block;
-  margin: auto;
   width: 100%;
   height: 10px;
 }
@@ -154,14 +155,15 @@ progress {
 /* 
 * These affect mostly the final-page screen
 */
-.final-page h2,
-p {
-  display: block;
-  font-size: 30px;
-  margin: 60px auto;
+.final-page h2 {
+  font-size: 60px;
   text-align: center;
 }
 
+.final-page p {
+  font-size: 30px;
+  text-align: center;
+}
 
 .red-plus-shadow {
   color: rgb(178,34,34);
