@@ -26,8 +26,9 @@ footer {
   text-align: center;
 }
 
-a:visited, a:link {
- color: white;
+a:visited,
+a:link {
+  color: white;
 }
 
 button {
@@ -105,10 +106,6 @@ button:hover {
   min-height: 300px;
 }
 
-.question-choices {
-
-}
-
 .answerButton {
   border: 1px solid lightblue;
   border-radius: 6px;
@@ -184,6 +181,6 @@ progress {
 }
 
 .red-plus-shadow {
-  color: rgb(178,34,34);
-  text-shadow: 1px 3px 2px rgba(0,0,0,0.4);
+  color: rgb(178, 34, 34);
+  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.4);
 }

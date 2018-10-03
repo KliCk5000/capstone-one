@@ -1,6 +1,3 @@
-1. Should I change the font style?
-2. What other things should I do for responsive design? It looks the way I want it to on mobile, but I didn't add any responsive code such as media queries etc.
-
 Mexican Flag Gradient
 http://colorzilla.com/gradient-editor/#006847+1,ffffff+50,ce1126+100
 
