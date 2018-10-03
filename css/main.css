@@ -19,6 +19,11 @@ fieldset {
   margin: 0;
 }
 
+footer {
+  color: white;
+  text-align: center;
+}
+
 button {
   display: block;
   background-color: lightgray;
