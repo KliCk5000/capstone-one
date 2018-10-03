@@ -5,9 +5,10 @@
 body {
   background-color: rgb(0, 104, 70);
   padding: 20px;
+  min-width: 300px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 320px) {
   body {
     padding: 20px 0;
   }

@@ -21,13 +21,13 @@ function setupQuiz() {
  */
 function renderStartupPage() {
   $('.quiz-container').append(`
-  <div class="start-page col-12">
+  <section class="start-page col-12">
     <header role="header">
         <h1 class="red-plus-shadow">Mexican Spanish Quiz</h1>
     </header>
     <h2>How many can you get right?</h2>
     <button type="button" class="startButton">Start Quiz</button>
-  </div>`);
+  </section>`);
 }
 
 /**
@@ -43,15 +43,15 @@ function renderQuestionPage() {
 
   // Setup the areas of the Question Page: TOP - MID - BOTTOM
   $('.quiz-container').append(`
-  <div class="question-page col-12">
+  <section class="question-page col-12">
     <div class="question-top"></div>
     <div class="question-mid"></div>
     <div class="question-bottom"></div>
-  </div>`);
+  </section>`);
 
   // TOP of the Question Page which includes the "Question 1: This is the first question"
   $('.question-top').append(`
-      <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
+      <h2 class="red-plus-shadow">Question <span class="no-wrap">${USERDATA.currentQuestion} of 10:</span></h2>
       <h3>Which is the correct translation for: <span class="no-wrap" lang="es">${currentQuestionObj.question}</span></h3>
     `);
 
@@ -84,7 +84,7 @@ function renderQuestionPage() {
 
   $('.question-bottom').append(`
       <progress value="${USERDATA.currentQuestion-1}" max="10">1/10</progress>
-      <!--<p>${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>-->
+      <p>Current score: ${USERDATA.answersCorrect} correct, ${USERDATA.answersIncorrect} incorrect</p>
   `);
 }
 
@@ -148,11 +148,11 @@ function renderFinalPage() {
 
 
   $('.quiz-container').append(
-    `<div class="final-page col-12">
+    `<section class="final-page col-12">
       <h2 class="red-plus-shadow">${greeting}</h2>
       <p>You got ${USERDATA.answersCorrect} out of 10 questions right for a score of ${(USERDATA.answersCorrect / 10) * 100}%</p>
       <button type="button" class="restartQuizButton">Click here to try the quiz again!</button>
-    </div>`
+    </section>`
   );
 }
 
