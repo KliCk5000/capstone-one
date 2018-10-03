@@ -52,7 +52,7 @@ function renderQuestionPage() {
   // TOP of the Question Page which includes the "Question 1: This is the first question"
   $('.question-top').append(`
       <h2 class="red-plus-shadow">Question ${USERDATA.currentQuestion}:</h2>
-      <h3>Which is the correct translation for: <span class="no-wrap">${currentQuestionObj.question}</span></h3>
+      <h3>Which is the correct translation for: <span class="no-wrap" lang="es">${currentQuestionObj.question}</span></h3>
     `);
 
   // Create the HTML for the Question options that the user can choose from.
@@ -134,7 +134,7 @@ function renderFinalPage() {
 
   if (finalScore == 100) {
     //Perfect score
-    greeting = `Congratulations, PERFECT!`;
+    greeting = `Congrats, PERFECT!`;
   } else if (finalScore >= 80) {
     //Normal Score
     greeting = `Congrats!`;

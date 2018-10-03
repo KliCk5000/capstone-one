@@ -25,6 +25,10 @@ footer {
   text-align: center;
 }
 
+a:visited, a:link {
+ color: white;
+}
+
 button {
   display: block;
   background-color: lightgray;
