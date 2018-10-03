@@ -27,14 +27,14 @@ const QUESTIONDATA = [{
   {
     questionID: 5,
     question: 'Ni modo',
-    choices: ['Slang for Banana', 'That\'s neat', 'Me too', 'It doesn’t matter / it can’t be helped'],
-    answer: 'It doesn’t matter / it can’t be helped'
+    choices: ['Slang for Banana', 'That\'s neat', 'Me too', 'no matter / it can’t be helped'],
+    answer: 'no matter / it can’t be helped'
   },
   {
     questionID: 6,
     question: 'Chido',
-    choices: ['Cool, when refering to objects or situations', 'A short Child', 'Tortilla Chips', 'Dinner'],
-    answer: 'Cool, when refering to objects or situations'
+    choices: ['Cool', 'A short Child', 'Tortilla Chips', 'Dinner'],
+    answer: 'Cool'
   },
   {
     questionID: 7,
